@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Website</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #9772a7, #b39db5);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            color: #333;
+        }
+
+        .card-subtitle {
+            color: #888;
+        }
+
+        .btn-create {
+            margin-bottom: 20px;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-create:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mb-4">Bharat Intern Blog Website</h1>
+        <a href="/articles/new" class="btn btn-success btn-create">Create Article</a>
+
+        <% articles.forEach(article=>{%>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h4 class="card-title"><%=article.title%></h4>
+                <div class="card-subtitle text-muted mb-2"><%=article.createdAt.toLocaleDateString() %></div>
+                <div class="card-text mb-2"><%=article.description%></div>
+                <a href="articles/<%=article.slug%>" class="btn btn-primary">Read More</a>
+                <a href="articles/edit/<%= article.id%>" class="btn btn-info">Edit</a>
+                <form action="/articles/<%=article.id %>?_method=DELETE" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+        <%})%>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-lfk5ewaoeNPR1OflhSx/4Z5TCUsIe3oV6+M/7AdSzL2LIP5pDhmYPaIa+VTXRg1f" crossorigin="anonymous"></script>
+</body>
+
+</html>
